@@ -1,0 +1,117 @@
+
+
+%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% SET FOLLOWING VARIABLE TO 1 FOR EDIT MODE AND 0 FOR VIEW MODE
+% (erase .bbl and .aux files in this folder every time
+% you switch from one mode to another, otherwise you get
+% an error)
+% One of the features of the edit mode is that it shows citations in
+% boldface if they are not defined in the bibtex file, like the [?] in
+% view mode. Different from the view mode, the edit mode indicates
+% which is the missing reference.
+\def\editmode{1}
+
+% set the following variable to the filenames, separated by commas, of
+% the bibfiles that contain your references.  
+\def\bibfilenames{bibman_refs}
+
+% Use the following lines if you want to modify how citations are displayed
+%% \let\oldcite\cite
+%% \renewcommand{\cite}[1]{\textbf{\oldcite{#1}}}
+
+% ========================================================================
+%                          CHOOSE THE TEMPLATE
+% ========================================================================
+% Wether to use the format of the IEEE SPS
+\def\spsformat{0}
+
+\if\spsformat1
+
+\documentclass{article}
+\usepackage{spconf}
+
+\else
+%\documentclass[journal]{IEEEtran}
+%\documentclass[draftclsnofoot,onecolumn,12pt]{IEEEtran}
+\documentclass[11pt,final,onecolumn]{IEEEtran}
+%\documentclass[10pt,final,twocolumn]{IEEEtran}
+%\documentclass[twocolumn,twoside]{IEEEtran}
+%% \documentclass[11pt]{article}
+%% \addtolength{\textwidth}{5.2cm} \addtolength{\textheight}{60pt}
+%% \addtolength{\hoffset}{-2.8cm} \addtolength{\voffset}{-30pt}
+
+\fi
+% ========================================================================
+
+
+\input{include_v5}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Title}
+
+\if\spsformat1
+\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+\address{Author Affiliation(s)}
+\else
+\author{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
+\fi
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{abstract}
+Toggle the variable \texttt{editmode} in the main source file to
+show/hide the bullets and labels. If switching the edit mode results
+in a compilation error, just delete the .aux file. 
+\end{abstract}
+
+
+\begin{keywords}
+One, two, three, four, five
+\end{keywords}
+
+\section{Introduction}
+\begin{bullets}
+\blt[overview]
+\blt[motivation]
+\blt[literature] [test citation~\cite{kay1}]
+\blt[contributions]
+\blt[paper structure]
+\blt[notation]
+\end{bullets}
+
+\section{Model and Problem Formulation}
+
+\cmt{model}Test equation:
+\begin{align}
+\label{eq:euler}
+e^{j\pi}=-1
+\end{align}
+
+\cmt{problem formulation}
+
+\section{Proposed Solution}
+
+\section{Numerical Experiments}
+
+\cmt{simulation setup}
+\begin{bullets}
+\blt[data generation]
+\blt[tested algorithms]
+\blt[performance metrics]
+\end{bullets}
+
+\cmt{description of the experiments}
+
+\section{Conclusions}
+
+
+\printmybibliography
+\end{document}
+
+
+

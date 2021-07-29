@@ -1,0 +1,190 @@
+
+
+%%%%%%%%%%%%%% SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% SET FOLLOWING VARIABLE TO 1 FOR EDIT MODE AND 0 FOR VIEW MODE
+% (erase .bbl and .aux files in this folder every time
+% you switch from one mode to another, otherwise you get
+% an error)
+%
+% One of the features of the edit mode is that it shows citations in
+% boldface if they are not defined in the bibtex file, like the [?] in
+% view mode. Different from the view mode, the edit mode indicates
+% which is the missing reference.
+% 
+% Note that the cross citations will only work correctly if the paper
+% (rather than this letter) has been compiled with edit mode = 0.
+\def\editmode{1}
+
+% set the following variable to the filenames, separated by commas, of
+% the bibfiles that contain your references.  
+\def\bibfilenames{../paper/bibman_refs}
+
+% ========================================================================
+%                          CHOOSE THE TEMPLATE
+% ========================================================================
+% Wether to use the format of the IEEE SPS
+%\documentclass[journal]{IEEEtran}
+%\documentclass[draftclsnofoot,onecolumn,12pt]{IEEEtran}
+%\documentclass[11pt,final,onecolumn]{IEEEtran}
+%\documentclass[10pt,final,twocolumn]{IEEEtran}
+%\documentclass[twocolumn,twoside]{IEEEtran}
+\documentclass[11pt]{article}
+\addtolength{\textwidth}{5.2cm} \addtolength{\textheight}{60pt}
+\addtolength{\hoffset}{-2.8cm} \addtolength{\voffset}{-30pt}
+% ========================================================================
+
+%% Check the following document for templates such as custom
+%% enumerations or how to include figures or tables.
+\input{../paper/include_v5}
+
+%%
+\renewcommand{\theequation}{R\arabic{equation}}
+
+% ========================================================================
+%                          (CROSS)-CITATIONS
+% ========================================================================
+%% To cite a reference from the paper use \cite{P-<key>}. It will be
+%% displayed e.g. as [4]. To create a new bibliographic entry in this
+%% letter, write \cite{<key>}. It will be displayed e.g. as [R4]. 
+\usepackage{xr,xcite}
+\externaldocument{../paper/draft}
+\externalcitedocument[P-]{../paper/draft}
+
+\makeatletter
+\renewcommand\@bibitem[1]{\item\if@filesw \immediate\write\@auxout
+    {\string\bibcite{#1}{R\the\value{\@listctr}}}\fi\ignorespaces}
+\def\@biblabel#1{[R#1]}
+\makeatother
+
+% ========================================================================
+
+\begin{document}
+
+
+\begin{center}
+\Large \textbf{T-SP-22369-2017: Authors' Response to Reviewers'~Comments}\\
+\today
+\end{center}
+We would like to thank the reviewers and the associate editor for
+their constructive feedback on the original submission, which
+contributed considerably to improving the manuscript. Changes are
+marked in {\color{blue}blue} in the revised manuscript. They mainly
+comprise some clarifications and new simulations. 
+
+%% \begin{itemize}
+%% \item[\textbf{c1)}] 
+%% \end{itemize}
+
+\noindent Unless stated otherwise, the equations, figures, remarks,
+propositions and (sub-)sections, are referenced with respect to the
+single-column version of the revised paper. Notation \cite{P-kay1}
+and \eqref{eq:euler} refers to bibliographic entries and equations in
+the manuscript respectively, whereas \cite{kay2} and \eqref{eq:sup}
+refer to the present document. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%   REVIEWER 1   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Responses to Reviewer 1's Comments}	
+
+{\it ``General comment''}
+
+\vspace*{0.5em} \noindent {\bf Response.}
+We thank the reviewer for
+his/her positive assessment and feedback.
+
+Test equation:
+\begin{align}
+\label{eq:sup}
+\sup ~[0,1) = 1
+\end{align}
+
+~\\[.1cm]
+\noindent\emph{``Two simple comments to authors are''}
+\begin{enumerate}[label=R1.\arabic*] %[(1)]%[label=R1.\alph]%[{R1}.1]
+
+\item {\it ``Comment 1.''}
+
+  {\bf Response.}
+  \begin{bullets}
+  \blt[cite from the paper]Test citations from the paper:~\cite{P-kay1}.
+  \blt[new citation]Test citations that create new bibliographic entries in this letter:~\cite{wilson2009regularization,wilson2010tomography}.
+
+  \end{bullets}
+
+\cmt{Many indentation levels can be used in edit mode:}
+\begin{bullets}
+  \blt 1
+
+\begin{bullets}
+  \blt 2
+
+\begin{bullets}
+  \blt 3
+
+\begin{bullets}
+  \blt 4
+
+\begin{bullets}
+  \blt 5
+
+\begin{bullets}
+  \blt 6 
+
+\begin{bullets}
+  \blt 7
+
+\begin{bullets}
+  \blt 8
+  
+\begin{bullets}
+  \blt 9
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+
+  \end{bullets}
+  
+
+
+\item{\it ``Comment 2.''}
+
+  {\bf Response.} Response here.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%   REVIEWER 2   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Responses to Reviewer 2's Comments}	
+
+{\it ``General comment''}
+
+\vspace*{0.5em} \noindent {\bf Response.}
+We thank the reviewer for
+his/her positive assessment and feedback.
+
+~\\[.1cm]
+\noindent\emph{``Two simple comments to authors are''}
+\begin{enumerate}[label=R2.\arabic*]
+
+\item {\it ``Comment 1.''}
+
+  {\bf Response.} Response here.
+
+
+\item{\it ``Comment 2.''}
+
+  {\bf Response.} Response here.
+\end{enumerate}
+
+\printmybibliography
+\end{document}
