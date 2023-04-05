@@ -230,6 +230,16 @@
 %% \end{colbox}
 
 
+%% Insert a big page:
+
+% \clearpage
+% \eject \pdfpagewidth=33.1in \pdfpageheight=46.8in
+% Tall page
+% \eject \pdfpagewidth=210mm \pdfpageheight=297mm
+
+
+
+
 %%%%%%%%%%%%%% BEGIN: DO-NOT-EDIT REGION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{savesym} %% Needed for compatibility with IEEEtran
@@ -245,7 +255,7 @@
 \DeclareFieldFormat{labelalpha}{\thefield{entrykey}}
 \DeclareFieldFormat{extraalpha}{}
 \bibliography{\bibfilenames}
-\newcommand{\cmt}[1]{\noindent\textcolor{lightgreen}{\underline{[#1]}}} % comment
+\newcommand{\cmt}[1]{\noindent\textcolor{darkgreen}{\underline{[#1]}}} % comment
 \newcommand{\hc}[1]{\textcolor{blue}{#1}} % highlight command --> to
 % know which symbol is
 % defined as a command
@@ -257,11 +267,11 @@
 \setlist[bulletlist,2]{label=$\diamond$}
 \setlist[bulletlist,3]{label=$\rightarrow$}
 \setlist[bulletlist,4]{label=$\circ$}
-\setlist[bulletlist,5]{label=$-$}
-\setlist[bulletlist,6]{label=$\square$}
-\setlist[bulletlist,7]{label=$\star$}
-\setlist[bulletlist,8]{label=$\checkmark$}
-\setlist[bulletlist,9]{label=$\Delta$}
+\setlist[bulletlist,5]{label=$\square$}
+\setlist[bulletlist,6]{label=$\star$}
+\setlist[bulletlist,7]{label=$\checkmark$}
+\setlist[bulletlist,8]{label=$\Delta$}
+\setlist[bulletlist,9]{label=$-$}
 \newenvironment{bullets}{\begin{bulletlist}}{\end{bulletlist}}
 
 \newcommand{\blt}[1][noargpassed]{% add a label if an optional argument is passed
@@ -836,13 +846,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{mycolorexample}
-        { \begin{colbox}{orange}
-\textit{Example:}\\ \small    }
-        {   \end{colbox}  }
+        {\begin{colbox} {yellow}
+\color{black}    \begin{myexample}\normalfont}
+        {\end{myexample}
+ \end{colbox}  
+}
 
-\newenvironment{myexample}
-        {\textit{Example:}\\ \small    }
-        {     }
+% \newenvironment{myexample}
+%         {\textit{Example:}\\ \small    }
+%         {     }
 
 \newenvironment{mycolorinformalproof}
         {% \begin{colbox}{gray}
@@ -882,11 +894,21 @@
 
 
 \newenvironment{mycolorproposition}
-        { \begin{colbox}{lightgray}
+        { \begin{colbox}{paleturquoise}
 \color{black}    \begin{myproposition}}
         {\end{myproposition}
  \end{colbox}  
 }
+
+
+\newenvironment{mycolorquestion}
+        { \begin{colbox}{lightblue}
+\color{black}    \begin{myquestion}\normalfont}
+        {\end{myquestion}
+ \end{colbox}  
+}
+
+
 
 \newenvironment{mycolorcorollary}
         { \begin{colbox}{lightgray}
@@ -933,6 +955,42 @@
  \end{colbox}  
 }
 
+
+%% Quizzes and solutions
+
+\makeatletter
+\newtoks\@soltoks
+\newcommand\printquizsolutions{%
+  \the\@soltoks}
+\newcommand\quizsolution[1]{%
+  \begin{flushright}
+    See the solution \hyperref[{qxsol:\themyquiz}]{here}.
+  \end{flushright}
+  \edef\@soltemp{%
+    \the\@soltoks % the previously stored solutions
+    \noexpand\solutionpreamble{\themyquiz}
+    \unexpanded{
+      #1
+    }%
+  }
+  \global\@soltoks=\expandafter{\@soltemp}
+}
+\newcommand{\solutionpreamble}[1]{%
+  \par\medskip\noindent\section{Solution to Quiz~\ref{qx:#1}}\label{qxsol:#1}\enspace\ignorespaces
+}
+\makeatother
+
+
+\newenvironment{mycolorquiz}
+        { \begin{colbox}{pistachio}
+\color{black}    \begin{myquiz}\label{qx:\themyquiz}
+\normalfont}
+        {\end{myquiz}
+ \end{colbox}  
+}
+
+
+%%%%%%%%
 
 
 
@@ -997,17 +1055,45 @@
         {\end{myauxoptionalproblem}
 }
 
-               
+
+\newenvironment{salign}[1][0]{\subequations \if#10  \else \label{#1} \fi \align}{\endalign\endsubequations}
+% Syntax:
+%
+% - Without global label:
+% \begin{salign}
+%  stuff
+% \end{align}
+%
+% - With a global label:
+% \begin{salign}[eq:mylabel]
+%  stuff
+% \end{align}
+%
+% If you get an error 'innaccessible' when you use \bm inside, use the
+% second option above, ie., with a label. We need to investigate why
+% this happens...
+
 % Color box 
 \newsavebox{\selvestebox}
+% \newenvironment{colbox}[1]
+%   {\newcommand\colboxcolor{#1}%
+%    \begin{lrbox}{\selvestebox}%
+%    \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+%   {\end{minipage}\end{lrbox}%
+%    \begin{center}
+%    \colorbox{\colboxcolor}{\usebox{\selvestebox}}
+%    \end{center}}
+
 \newenvironment{colbox}[1]
   {\newcommand\colboxcolor{#1}%
    \begin{lrbox}{\selvestebox}%
-   \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+%   \begin{minipage}{\dimexpr\columnwidth-2\fboxsep\relax}}
+   \begin{minipage}{\linewidth}}
   {\end{minipage}\end{lrbox}%
    \begin{center}
    \colorbox{\colboxcolor}{\usebox{\selvestebox}}
    \end{center}}
+
 
 % Colors
 \definecolor{orange}{rgb}{1,0.8,0}
@@ -1018,8 +1104,11 @@
 \definecolor{lightred}{rgb}{1,0.7,.7}
 \definecolor{purple}{RGB}{204,153,255}
 \definecolor{lightgray}{rgb}{.95,0.95,0.95}
-\definecolor{lightgreen}{rgb}{0.3,0.5,0.3}
+\definecolor{lightgreen}{rgb}{0.6,0.8,0.6}
 \definecolor{darkgreen}{rgb}{0.05,0.3,0.05}
+\definecolor{pistachio}{RGB}{204,255,153}
+\definecolor{paleturquoise}{RGB}{175,238,238}
+\definecolor{yellow}{RGB}{255,255,153}
 
 
 
@@ -1068,8 +1157,11 @@
 \newcommand{\bdiag}{\mathop{\rm bdiag}}
 \newcommand{\bdiagb}[1]{\mathop{\rm bdiag}\brackets{#1}}
 \newcommand{\diagnb}{\mathop{\rm diag}}
-\newcommand{\rank}{\mathop{\rm rank}}
+\newcommand{\vectnb}{\mathop{\rm vec}}
 \newcommand{\rankb}[1]{\mathop{\rm rank}\brackets{#1}}
+\newcommand{\ranknb}{\mathop{\rm rank}}
+\newcommand{\rank}{\mathop{\rm rank}}
+\newcommand{\frob}{{\hc{\text{F}}}}
 \newcommand{\krank}{\mathop{\rm krank}}
 \newcommand{\lambdamax}{\lambda_\text{max}}
 \newcommand{\lambdamin}{\lambda_\text{mmin}}
@@ -1146,14 +1238,24 @@
 \newcommand{\ejo}{(e^{j\omega})}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\lagrangian}{{\hc{\mathcal{L}}}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newtheorem{myproposition}{Proposition}
+\newtheorem{myquestion}{Question}
+\newtheorem{myquiz}{Quiz}
 \newtheorem{myremark}{Remark}
-\newtheorem{myproblemstatement}{Problem Statement}
+\newtheorem{myproblemstatement}{Problem}
 \newtheorem{mylemma}{Lemma}
 \newtheorem{mytheorem}{Theorem}
 \newtheorem{mydefinition}{Definition}
 \newtheorem{mycorollary}{Corollary}
+\newtheorem{myexample}{Example}
+\newenvironment{myproofsketch}{\emph{Proof sketch:}}{\hfill $\blacksquare$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Use the following to break equations across pages
+% \allowdisplaybreaks
