@@ -9,7 +9,10 @@
 % boldface if they are not defined in the bibtex file, like the [?] in
 % view mode. Different from the view mode, the edit mode indicates
 % which is the missing reference.
-\def\editmode{1}
+%
+% Also, when writing the response letter, you may need to set this
+% variable to 0 in order for cross-referencing to work.
+\def\editmode{0}
 
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
@@ -24,6 +27,7 @@
 % ========================================================================
 % Wether to use the format of the IEEE SPS
 \def\spsformat{0}
+\def\singlenarrowcol{1} % only applicable if spsformat == 0
 
 \if\spsformat1
 
@@ -31,6 +35,9 @@
 \usepackage{spconf}
 
 \else
+
+
+\if\singlenarrowcol0
 %\documentclass[journal]{IEEEtran}
 %\documentclass[draftclsnofoot,onecolumn,12pt]{IEEEtran}
 \documentclass[11pt,final,onecolumn]{IEEEtran}
@@ -50,7 +57,13 @@
 
 \IEEEoverridecommandlockouts
 % The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\else
 
+\documentclass[onecolumn]{IEEEtran}
+    \usepackage[pass]{geometry}
+    \newgeometry{textwidth=252pt, textheight=672pt}
+
+\fi
 \fi
 % ========================================================================
 
@@ -98,10 +111,11 @@
     in a compilation error, just delete the .aux file.
 \end{abstract}
 
-
+\if\spsformat0
 \begin{IEEEkeywords}
     One, two, three, four, five
 \end{IEEEkeywords}
+\fi
 
 \section{Introduction}
 \begin{bullets}

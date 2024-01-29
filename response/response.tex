@@ -1,4 +1,4 @@
-
+  
 %%%%%%%%%%%%%% WARNING %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Before compling, comment the line
@@ -19,7 +19,7 @@
 % 
 % Note that the cross citations will only work correctly if the paper
 % (rather than this letter) has been compiled with edit mode = 0.
-\def\editmode{1}
+\def\editmode{0}
 
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
@@ -41,7 +41,7 @@
 
 %% Check the following document for templates such as custom
 %% enumerations or how to include figures or tables.
-\input{../paper/include_v5}
+\usepackage{../paper/include_v7}
 
 %%
 \renewcommand{\theequation}{R\arabic{equation}}
@@ -53,8 +53,8 @@
 %% displayed e.g. as [4]. To create a new bibliographic entry in this
 %% letter, write \cite{<key>}. It will be displayed e.g. as [R4]. 
 \usepackage{xr,xcite}
-\externaldocument[P-]{../paper/draft}
-\externalcitedocument[P-]{../paper/draft}
+\externaldocument[P-]{../paper/paper}
+\externalcitedocument[P-]{../paper/paper}
 
 \makeatletter
 \renewcommand\@bibitem[1]{\item\if@filesw \immediate\write\@auxout
