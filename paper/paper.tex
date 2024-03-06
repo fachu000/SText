@@ -4,7 +4,7 @@
 % SET FOLLOWING VARIABLE TO 1 FOR EDIT MODE AND 0 FOR VIEW MODE
 % (erase .bbl and .aux files in this folder every time
 % you switch from one mode to another, otherwise you get
-% an error)
+% an error) 
 % One of the features of the edit mode is that it shows citations in
 % boldface if they are not defined in the bibtex file, like the [?] in
 % view mode. Different from the view mode, the edit mode indicates
@@ -106,15 +106,23 @@
 
 
 \begin{abstract}
-    Toggle the variable \texttt{editmode} in the main source file to
+    Toggle the LaTeX variable \texttt{editmode} in the main source file to
     show/hide the bullets and labels. If switching the edit mode results
     in a compilation error, just delete the .aux file.
+
+    If the LaTeX variable \texttt{singlenarrowcol} is 1, then each page contains
+    a single column whose size equals the size of each of the columns in a
+    double-column layout. This is convenient for editing and reviewing the
+    document in a laptop screen. The number of pages when
+    \texttt{singlenarrowcol} is 1 is roughly twice the number of pages when
+    \texttt{singlenarrowcol} is 0.
+
 \end{abstract}
 
 \if\spsformat0
-\begin{IEEEkeywords}
-    One, two, three, four, five
-\end{IEEEkeywords}
+    \begin{IEEEkeywords}
+        One, two, three, four, five
+    \end{IEEEkeywords}
 \fi
 
 \section{Introduction}
