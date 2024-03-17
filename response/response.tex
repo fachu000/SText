@@ -56,9 +56,13 @@
 % ========================================================================
 %                          (CROSS)-CITATIONS
 % ========================================================================
-%% To cite a reference from the paper use \cite{P-<key>}. It will be
-%% displayed e.g. as [4]. To create a new bibliographic entry in this
-%% letter, write \cite{<key>}. It will be displayed e.g. as [R4]. 
+% At this point, you need to set \hyperlinks and \editmode to 0 in the paper. As
+% per the documentation of xr-hyper, it will be possible to do it  in a
+% different way in the future. 
+%
+%To cite a reference from the paper use \cite{P-<key>}. It will be % displayed
+%e.g. as [4]. To create a new bibliographic entry in this % letter, write
+%\cite{<key>}. It will be displayed e.g. as [R4]. 
 \usepackage{xr,xcite}
 \externaldocument[P-]{../paper/paper}
 \externalcitedocument[P-]{../paper/paper}
@@ -78,6 +82,8 @@
     \Large \textbf{T-SP-22369-2017: Authors' Response to Reviewers'~Comments}\\
     \today
 \end{center}
+\acom{Please make sure to use the right code in the title and that the comments are properly numbered.}
+
 We would like to thank the reviewers and the associate editor for
 their constructive feedback on the original submission, which
 contributed considerably to improving the manuscript. Changes are
@@ -97,105 +103,74 @@ refer to the present document.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%   REVIEWER 1   %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Responses to Reviewer 1's Comments}
+\begin{rcomment}
+    General comment
+\end{rcomment}
 
- {\it ``General comment''}
+\vspace*{0.5em} \noindent
+\begin{response}
+    We thank the reviewer for his/her positive assessment and feedback.
 
-\vspace*{0.5em} \noindent {\bf Response.}
-We thank the reviewer for
-his/her positive assessment and feedback.
+    Test equation:
+    \begin{align}
+        \label{eq:sup}
+        \sup[0,1) = 1
+    \end{align}
 
-Test equation:
-\begin{align}
-    \label{eq:sup}
-    \sup[0,1) = 1
-\end{align}
-
-~\\[.1cm]
+\end{response}
 
 \begin{enumerate}[label=R1.\arabic*] %[(1)]%[label=R1.\alph]%[{R1}.1]
 
-    \item {\it ``Comment 1.''}
+    \item \begin{rcomment}
+              Comment 1.
+          \end{rcomment}
 
-          {\bf Response.}
-          \begin{bullets}
-              \blt[cite from the paper]Test citations from the paper:~\cite{P-kay1}.
-              \blt[new citation]Test citations that create new bibliographic entries in this letter:~\cite{wilson2009regularization,wilson2010tomography}.
-
-          \end{bullets}
-
-          \cmt{Many indentation levels can be used in edit mode:}
-          \begin{bullets}
-              \blt 1
-
+          \begin{response}
               \begin{bullets}
-                  \blt 2
-
-                  \begin{bullets}
-                      \blt 3
-
-                      \begin{bullets}
-                          \blt 4
-
-                          \begin{bullets}
-                              \blt 5
-
-                              \begin{bullets}
-                                  \blt 6
-
-                                  \begin{bullets}
-                                      \blt 7
-
-                                      \begin{bullets}
-                                          \blt 8
-
-                                          \begin{bullets}
-                                              \blt 9
-                                          \end{bullets}
-
-                                      \end{bullets}
-
-                                  \end{bullets}
-
-                              \end{bullets}
-
-                          \end{bullets}
-
-                      \end{bullets}
-
-                  \end{bullets}
+                  \blt[cite from the paper]Test citations from the paper:~\cite{P-kay1}.
+                  \blt[new citation]Test citations that create new bibliographic entries in this letter:~\cite{wilson2009regularization,wilson2010tomography}.
 
               \end{bullets}
 
-          \end{bullets}
+          \end{response}
 
-
-
-          \item{\it ``Comment 2.''}
-
-                {\bf Response.} Response here.
+    \item \begin{rcomment}
+              Comment 2.
+          \end{rcomment}
+          \begin{response}
+              Response here.
+          \end{response}
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%   REVIEWER 2   %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Responses to Reviewer 2's Comments}
 
- {\it ``General comment''}
+\begin{rcomment}
+    General comment
+\end{rcomment}
 
-\vspace*{0.5em} \noindent {\bf Response.}
-We thank the reviewer for
-his/her positive assessment and feedback.
-
-~\\[.1cm]
+\vspace*{0.5em} \noindent
+\begin{response}
+    We thank the reviewer for his/her positive assessment and feedback.
+\end{response}
 
 \begin{enumerate}[label=R2.\arabic*]
 
-    \item {\it ``Comment 1.''}
+    \item \begin{rcomment}
+              Comment 1.
+          \end{rcomment}
 
-          {\bf Response.} Response here.
+          \begin{response}
+              Response here.
+          \end{response}
 
+    \item \begin{rcomment}
+              Comment 2.
+          \end{rcomment}
 
-          \item{\it ``Comment 2.''}
-
-                {\bf Response.} Response here.
+          \begin{response}
+              Response here.
+          \end{response}
 \end{enumerate}
 
 \printmybibliography

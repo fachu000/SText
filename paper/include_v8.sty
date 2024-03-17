@@ -1338,3 +1338,16 @@
 
 % Use the following to break equations across pages
 % \allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% For the response letter
+
+% Reviewer's comment
+\newenvironment{rcomment}
+{\itshape ``\ignorespaces}
+{\unskip''}
+
+% Authors' response
+\newenvironment{response}
+{\par\medskip\noindent\textbf{Response.} \ignorespaces}
+{\par\medskip}
