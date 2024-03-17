@@ -12,12 +12,11 @@
 %
 % Also, when writing the response letter, you may need to set this
 % variable to 0 in order for cross-referencing to work.
-\def\editmode{1}
+\def\editmode{0}
 
 % The following variable needs to be set to 0 to compile the response letter.
 % Else, cross-referencing will not work (xcite is incompatible with href).
-\def\hyperlinks{1}
-
+\def\hyperlinks{0} 
 
 % Wether to use the format of the IEEE SPS:
 \def\spsformat{0}
@@ -27,15 +26,19 @@
 % document in a laptop screen. 
 \def\singlenarrowcol{0} % only applicable if spsformat == 0
 
-
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
 \def\bibfilenames{bibman_refs}
 
-\def\journal{2}
 % If \journal == 0, only the conference content is shown. 
 % If \journal == 1, only the journal content is shown.
 % If \journal == 2, both the conference and journal content are shown. The journal content is shown in dark yellow (as old newspapers), the conference content in blue/green (as the sea). 
+\def\journal{2}
+
+% If 0, intermediate steps are not shown. 
+% If 1, intermediate steps are shown in purple
+% Note that one cannot have "\\" inside an "intermed" environment. Just put `\jumpline` before or after the environment instead of "\\".  The same for "&" and "\alignchar"
+\def\intermediatesteps{1}
 
 % Consider using the following package to equalize the length of the columns of
 % the last page of the document. 
@@ -175,12 +178,24 @@
 \end{bullets}
 
 \section{Proposed Solution}
+\begin{bullets}%
+    \blt[intermed] Intermediate steps are shown in purple if \texttt{\textbackslash intermediatesteps} is set to 1.
+    \begin{align}
+        (x+1)^2 + (x-1)^2
+        \alignchar
+        \begin{intermed}
+            = x^2 + 2x + 1 + x^2 - 2x + 1
+        \end{intermed}
+        \jlac= 2x^2 + 2
+    \end{align}
+    Use \texttt{\textbackslash jumpline} instead of \texttt{\textbackslash\textbackslash} and  \texttt{\textbackslash alignchar} instead of \texttt{\&}. A short form for \texttt{\textbackslash jumpline\textbackslash alignchar} is \texttt{\textbackslash jlac}.
+\end{bullets}%
 
 
 \section{Analysis}
 
 \begin{bullets}
-    \blt[overview] This section presents~\Cref{prop:mainresult}.
+    \blt[overview]
     \blt[journal]  Set the variable \texttt{journal} to 0, 1, or 2 to show only the conference content, only the journal content, or both in different colors, respectively.
     \begin{journalonly}
         This is the journal-only content.
@@ -188,7 +203,10 @@
     \begin{conferenceonly}
         This is the conference-only content.
     \end{conferenceonly}
-    \blt[main result]Use \texttt{\textbackslash label\{prop:XXXX\}} to label a proposition, which includes theorems, lemmas, corollaries, etc. To refer to it, use \texttt{\textbackslash Cref\{prop:XXXX\}}. Replace \texttt{XXXX} with the label of the proposition.
+
+    \blt[References]Use \texttt{\textbackslash label\{prop:XXXX\}} to label any proposition, which includes theorems, lemmas, and corollaries. To refer to it, use \texttt{\textbackslash Cref\{prop:XXXX\}}. Replace \texttt{XXXX} with the label of the proposition.  For example, next result is~\Cref{prop:mainresult}.
+
+    \blt[main result]
 
     \begin{theorem}
         \label{prop:mainresult}
@@ -211,6 +229,8 @@
     \end{corollary}
 
     We refer to it as \Cref{prop:corollary}.
+
+
 
 \end{bullets}
 

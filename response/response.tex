@@ -22,6 +22,11 @@
 \def\editmode{0}
 \def\singlenarrowcol{0}
 
+% If 0, intermediate steps are not shown. 
+% If 1, intermediate steps are shown in purple
+% Note that one cannot have "\\" inside an "intermed" environment. Just put `\jumpline` before or after the environment instead of "\\".  The same for "&" and "\alignchar"
+\def\intermediatesteps{0}
+
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
 \def\bibfilenames{../paper/bibman_refs}

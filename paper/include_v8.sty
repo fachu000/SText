@@ -1317,15 +1317,24 @@
 \newtheoremcref{example}{Example}{Examples}
 \newenvironment{proofsketch}{\emph{Proof sketch:}}{\hfill $\blacksquare$}
 
-
-% \newtheorem{myquestion}{Question}
-% \newtheorem{myquiz}{Quiz}
-% \newtheorem{myremark}{Remark}
-% \newtheorem{myproblemstatement}{Problem}
-% \newtheorem{mylemma}{Lemma}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if\intermediatesteps1
+    % \newenvironment{intermed}{\color{purple}}{}
+    \NewEnviron{intermed}{%    
+        \color{purple}
+        \BODY
+    }
+    \newcommand{\jumpline}{\\}
+    \newcommand{\alignchar}{&}
+    \newcommand{\jlac}{\\&}
+\else
+    \NewEnviron{intermed}{%    
+    }
+    \newcommand{\jumpline}{}
+    \newcommand{\alignchar}{}
+    \newcommand{\jlac}{}
+\fi
 
 % Use the following to break equations across pages
 % \allowdisplaybreaks
