@@ -1,0 +1,10 @@
+
+
+% Use \hc to color the defined symbols in edit mode. Subscripts/superscripts may
+% need to go outside the \hc command.
+\newcommand{\testsymbol}{{\hc{\mathcal{T}}}} % explain meaning
+
+
+% Use \newcommandoa to define a command that looks different depending on
+% whether an argument is passed.
+\newcommandoa{\sectestsymbol}{\hc{x}}{{\hc{x^{(#1)}}}}

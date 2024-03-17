@@ -37,16 +37,16 @@
 \documentclass[onecolumn]{IEEEtran}
     \usepackage[pass]{geometry}
     \newgeometry{textwidth=252pt, textheight=672pt}
-
 \fi
 % ========================================================================
 
 %% Check the following document for templates such as custom
 %% enumerations or how to include figures or tables.
-\usepackage{../paper/include_v7}
+\usepackage{../paper/include_v8}
+\usepackage{../paper/notation}
 
-%%
-\renewcommand{\theequation}{R\arabic{equation}}
+%%  
+\renewcommand{\theequation}{R\arabic{equation}} 
 
 % ========================================================================
 %                          (CROSS)-CITATIONS
@@ -86,7 +86,7 @@ comprise some clarifications and new simulations.
 \noindent Unless stated otherwise, the equations, figures, remarks,
 propositions and (sub-)sections, are referenced with respect to the
 single-column version of the revised paper. Notation \cite{P-kay1}
-and \eqref{P-eq:euler} refers to bibliographic entries and equations in
+and \eqref{P-eq:testequation} refers to bibliographic entries and equations in
 the manuscript respectively, whereas \cite{kay2} and \eqref{eq:sup}
 refer to the present document.
 
@@ -102,11 +102,11 @@ his/her positive assessment and feedback.
 Test equation:
 \begin{align}
     \label{eq:sup}
-    \sup ~[0,1) = 1
+    \sup[0,1) = 1
 \end{align}
 
 ~\\[.1cm]
-\noindent\emph{``Two simple comments to authors are''}
+
 \begin{enumerate}[label=R1.\arabic*] %[(1)]%[label=R1.\alph]%[{R1}.1]
 
     \item {\it ``Comment 1.''}
@@ -180,7 +180,7 @@ We thank the reviewer for
 his/her positive assessment and feedback.
 
 ~\\[.1cm]
-\noindent\emph{``Two simple comments to authors are''}
+
 \begin{enumerate}[label=R2.\arabic*]
 
     \item {\it ``Comment 1.''}

@@ -813,9 +813,13 @@
 \usepackage{multirow}
 \usepackage{accents}
 
-\usepackage{theoremref}
-% use \thlabel{} and \thref{}
 
+% hyperref is incompatible with xcite for crossreferencing across docs.
+\ifdefined\hyperlinks
+    \if\hyperlinks1
+        \usepackage{hyperref}
+    \fi
+\fi
 
 %\usepackage{balance}  % if you want to balance the height of the two columns
 % at the last page write \balance on the first column of the last page.
@@ -851,6 +855,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ENVIRONMENTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{environ}
+\ifdefined\journal
+    \if\journal0
+        \NewEnviron{journalonly}{%    
+        }
+        \NewEnviron{conferenceonly}{%    
+            \BODY
+        }
+    \else
+        \if\journal1
+            \NewEnviron{journalonly}{%
+                \BODY
+            }
+            \NewEnviron{conferenceonly}{%            
+            }
+        \else
+            \if\journal2
+                \newenvironment{journalonly}{\color{darkyellow}}{}
+                \newenvironment{conferenceonly}{\color{bluegreen}}{}
+            \fi
+        \fi
+    \fi
+\fi
+
+
 
 \newenvironment{mycolorexample}
 {\begin{colbox} {yellow}
@@ -1252,17 +1282,48 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{myproposition}{Proposition}
-\newtheorem{myquestion}{Question}
-\newtheorem{myquiz}{Quiz}
-\newtheorem{myremark}{Remark}
-\newtheorem{myproblemstatement}{Problem}
-\newtheorem{mylemma}{Lemma}
-\newtheorem{mytheorem}{Theorem}
-\newtheorem{mydefinition}{Definition}
-\newtheorem{mycorollary}{Corollary}
-\newtheorem{myexample}{Example}
-\newenvironment{myproofsketch}{\emph{Proof sketch:}}{\hfill $\blacksquare$}
+
+%\usepackage{theoremref}
+% use \thlabel{} and \thref{}
+\usepackage{cleveref}
+
+% % Custom command to define theorem and set Crefname
+% \newcommand{\newtheoremcref}[3]{%
+%     \newtheorem{#1}[theorem]{#2}%
+%     \Crefname{#1}{#2}{#3}%
+% }
+
+
+
+
+% The following two lines italicize the text in the theorems. These two lines
+% cannot be placed anywhere. Sometimes the order of the imports may result in
+% conflicts. 
+\usepackage{ntheorem}
+\theoremstyle{plain}
+\newcommand{\newtheoremcref}[3]{%
+    \newtheorem{#1}{#2}%
+    \Crefname{#1}{#2}{#3}%
+}
+
+\newtheoremcref{proposition}{Proposition}{Propositions}
+\newtheoremcref{quiz}{Quiz}{Quizzes}
+\newtheoremcref{remark}{Remark}{Remarks}
+\newtheoremcref{problemstatement}{Problem}{Problems}
+\newtheoremcref{lemma}{Lemma}{Lemmas}
+\newtheoremcref{theorem}{Theorem}{Theorems}
+\newtheoremcref{definition}{Definition}{Definitions}
+\newtheoremcref{corollary}{Corollary}{Corollaries}
+\newtheoremcref{example}{Example}{Examples}
+\newenvironment{proofsketch}{\emph{Proof sketch:}}{\hfill $\blacksquare$}
+
+
+% \newtheorem{myquestion}{Question}
+% \newtheorem{myquiz}{Quiz}
+% \newtheorem{myremark}{Remark}
+% \newtheorem{myproblemstatement}{Problem}
+% \newtheorem{mylemma}{Lemma}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

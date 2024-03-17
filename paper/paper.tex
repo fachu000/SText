@@ -4,7 +4,7 @@
 % SET FOLLOWING VARIABLE TO 1 FOR EDIT MODE AND 0 FOR VIEW MODE
 % (erase .bbl and .aux files in this folder every time
 % you switch from one mode to another, otherwise you get
-% an error) 
+% an error)  
 % One of the features of the edit mode is that it shows citations in
 % boldface if they are not defined in the bibtex file, like the [?] in
 % view mode. Different from the view mode, the edit mode indicates
@@ -12,11 +12,34 @@
 %
 % Also, when writing the response letter, you may need to set this
 % variable to 0 in order for cross-referencing to work.
-\def\editmode{0}
+\def\editmode{1}
+
+% The following variable needs to be set to 0 to compile the response letter.
+% Else, cross-referencing will not work (xcite is incompatible with href).
+\def\hyperlinks{1}
+
+
+% Wether to use the format of the IEEE SPS:
+\def\spsformat{0}
+
+% Wether to use a single column with the same width as the columns in the
+% double-column format. This is useful for editing and reviewing the
+% document in a laptop screen. 
+\def\singlenarrowcol{0} % only applicable if spsformat == 0
+
 
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
 \def\bibfilenames{bibman_refs}
+
+\def\journal{2}
+% If \journal == 0, only the conference content is shown. 
+% If \journal == 1, only the journal content is shown.
+% If \journal == 2, both the conference and journal content are shown. The journal content is shown in dark yellow (as old newspapers), the conference content in blue/green (as the sea). 
+
+% Consider using the following package to equalize the length of the columns of
+% the last page of the document. 
+% \usepackage{flushend}
 
 % Use the following lines if you want to modify how citations are displayed
 %% \let\oldcite\cite
@@ -25,9 +48,6 @@
 % ========================================================================
 %                          CHOOSE THE TEMPLATE
 % ========================================================================
-% Wether to use the format of the IEEE SPS
-\def\spsformat{0}
-\def\singlenarrowcol{0} % only applicable if spsformat == 0
 
 \if\spsformat1
 
@@ -67,10 +87,9 @@
 \fi
 % ========================================================================
 
-\usepackage{include_v7}
+\usepackage{include_v8}
+\usepackage{notation}
 
-% Comment the following line if you are going to use xcite
-%\usepackage{hyperref}
 
 \begin{document}
 
@@ -131,21 +150,70 @@
     \blt[motivation]
     \blt[literature] [test citation~\cite{kay1}]
     \blt[contributions]
-    \blt[paper structure]
+    \blt[paper structure]Sec.~\ref{sec:model} introduces the system model and formulates the problem\ldots
     \blt[notation]
 \end{bullets}
 
 \section{Model and Problem Formulation}
+\label{sec:model}
 
-\cmt{model}Test equation:
-\begin{align}
-    \label{eq:euler}
-    e^{j\pi}=-1
-\end{align}
+\begin{bullets}
+    \blt[model]    The following equation illustrates the usage of \texttt{salign}, \texttt{\textbackslash hc} and \texttt{\textbackslash{}newcommandoa}:
+    \begin{salign}[eq:globallabel]
+        \label{eq:testequation}
+        \testsymbol&=1\\
+        \sectestsymbol &\in \{\sectestsymbol[0],\ldots,\sectestsymbol[N-1]\}
+    \end{salign}
 
-\cmt{problem formulation}
+    \blt[problem formulation]For an enumeration that should be visible when not in edit mode, use \texttt{\textbackslash cmt}:
+    \begin{enumerate}
+        \item \cmt{first item} This goes first.
+        \item \cmt{second item} This goes second.
+    \end{enumerate}
+
+
+\end{bullets}
 
 \section{Proposed Solution}
+
+
+\section{Analysis}
+
+\begin{bullets}
+    \blt[overview] This section presents~\Cref{prop:mainresult}.
+    \blt[journal]  Set the variable \texttt{journal} to 0, 1, or 2 to show only the conference content, only the journal content, or both in different colors, respectively.
+    \begin{journalonly}
+        This is the journal-only content.
+    \end{journalonly}
+    \begin{conferenceonly}
+        This is the conference-only content.
+    \end{conferenceonly}
+    \blt[main result]Use \texttt{\textbackslash label\{prop:XXXX\}} to label a proposition, which includes theorems, lemmas, corollaries, etc. To refer to it, use \texttt{\textbackslash Cref\{prop:XXXX\}}. Replace \texttt{XXXX} with the label of the proposition.
+
+    \begin{theorem}
+        \label{prop:mainresult}
+        If it rains, it is cloudy.
+    \end{theorem}
+    \begin{IEEEproof}
+        \begin{conferenceonly}
+            The proof is omitted due to lack of space.
+        \end{conferenceonly}
+        \begin{journalonly}
+            The proof is in Appendix~\ref{app:proof}.
+        \end{journalonly}
+    \end{IEEEproof}
+
+    \blt[corollary] Now a consequence of \Cref{prop:mainresult}:
+
+    \begin{corollary}
+        \label{prop:corollary}
+        If it rains, it is cloudy.
+    \end{corollary}
+
+    We refer to it as \Cref{prop:corollary}.
+
+\end{bullets}
+
 
 \section{Numerical Experiments}
 
@@ -156,10 +224,21 @@
     \blt[performance metrics]
 \end{bullets}
 
+
 \cmt{description of the experiments}
 
 \section{Conclusions}
 
+\appendices
+
+
+\begin{journalonly}
+
+    \section{Proof of \cref{prop:mainresult}}
+    \label{app:proof}
+
+    This is the proof of \cref{prop:mainresult}
+\end{journalonly}
 
 \printmybibliography
 \end{document}
