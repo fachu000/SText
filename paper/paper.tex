@@ -12,7 +12,7 @@
 %
 % Also, when writing the response letter, you may need to set this
 % variable to 0 in order for cross-referencing to work.
-\def\editmode{0}
+\def\editmode{1}
 
 % The following variable needs to be set to 0 to compile the response letter.
 % Else, cross-referencing will not work (xcite is incompatible with href).
@@ -150,10 +150,24 @@
 \section{Introduction}
 \begin{bullets}
     \blt[overview]
+
     \blt[motivation]
+
     \blt[literature] [test citation~\cite{kay1}]
+
+    \blt[novelty]Write here the major claim of the paper. This should be as general as possible but it should be true. For example, consider the following claims:
+    \begin{bullets}%
+        \blt[general claim] (C1) "This is the first paper to address the problem of path planning for aerial relays", and
+
+        \blt[specific claim] (C2)  "This is the first paper to address the problem of path planning for multiple aerial relays using reinforcement learning in urban environments with constraints on the user rate".
+    \end{bullets}%
+    (C1) is clearly more general since it is saying that nobody has addressed the problem of path planning for aerial relays before. In contrast, (C2) is more specific since it is implicitly saying that other people have considered very similar problems such as path planning for aerial relays using reinforcement learning in urban environments but without constraints on the user rate.
+
+
     \blt[contributions]
+
     \blt[paper structure]Sec.~\ref{sec:model} introduces the system model and formulates the problem\ldots
+
     \blt[notation]
 \end{bullets}
 
