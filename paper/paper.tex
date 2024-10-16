@@ -16,7 +16,7 @@
 
 % The following variable needs to be set to 0 to compile the response letter.
 % Else, cross-referencing will not work (xcite is incompatible with href).
-\def\hyperlinks{0}  
+\def\hyperlinks{1}  
 
 % Wether to use the format of the IEEE SPS:
 \def\spsformat{0}
@@ -24,7 +24,7 @@
 % Wether to use a single column with the same width as the columns in the
 % double-column format. This is useful for editing and reviewing the
 % document in a laptop screen. 
-\def\singlenarrowcol{0} % only applicable if spsformat == 0
+\def\singlenarrowcol{1} % only applicable if spsformat == 0
 
 % set the following variable to the filenames, separated by commas, of
 % the bibfiles that contain your references.  
@@ -96,6 +96,8 @@
 
 \begin{document}
 
+%% doc_body__begin
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \if\spsformat1
     \title{Title}
@@ -125,6 +127,8 @@
 
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 
 \begin{abstract}
@@ -274,7 +278,11 @@
     This is the proof of \cref{prop:mainresult}
 \end{journalonly}
 
+
+%% doc_body__end
 \printmybibliography
+
+
 \end{document}
 
 
