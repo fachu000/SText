@@ -254,6 +254,11 @@
     \newcommand{#1}[1][noargpassed]{% add a subscript if an arg is passed    
         \ifthenelse{\equal{##1}{noargpassed}}{#2}{#3}%
     }
+  }
+\newcommand{\renewcommandoa}[3]{ % name, text if no arg, text if arg
+    \renewcommand{#1}[1][noargpassed]{% add a subscript if an arg is passed    
+        \ifthenelse{\equal{##1}{noargpassed}}{#2}{#3}%
+    }
 }
 
 \if\editmode1  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
