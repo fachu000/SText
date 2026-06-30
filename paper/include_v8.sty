@@ -154,6 +154,10 @@
 
 
 \usepackage[dvipsnames]{xcolor}
+\ifdefined\darktheme
+\else
+    \def\darktheme{0}
+\fi
 
 %% \usepackage{algorithmic}
 %% \usepackage[ruled,vlined,resetcount]{algorithm2e}
@@ -254,7 +258,7 @@
     \newcommand{#1}[1][noargpassed]{% add a subscript if an arg is passed    
         \ifthenelse{\equal{##1}{noargpassed}}{#2}{#3}%
     }
-  }
+}
 \newcommand{\renewcommandoa}[3]{ % name, text if no arg, text if arg
     \renewcommand{#1}[1][noargpassed]{% add a subscript if an arg is passed    
         \ifthenelse{\equal{##1}{noargpassed}}{#2}{#3}%
@@ -268,7 +272,7 @@
     \DeclareFieldFormat{extraalpha}{}
     \bibliography{\bibfilenames}
     \newcommand{\cmt}[1]{\noindent\textcolor{darkgreen}{\underline{[#1]}}} % comment
-    \newcommand{\hc}[1]{\textcolor{blue}{#1}} % highlight command --> to
+    \newcommand{\hc}[1]{\textcolor{highlightblue}{#1}} % highlight command --> to
     % know which symbol is
     % defined as a command
 
@@ -298,7 +302,7 @@
     \usepackage{cite}
     \bibliographystyle{IEEEbib}
     \newcommand{\cmt}[1]{} % comment
-    \newcommand{\hc}[1]{\textcolor{black}{#1}} % highlight command -->
+    \newcommand{\hc}[1]{\textcolor{\papertextcolor}{#1}} % highlight command -->
     % in the edit mode, this command can
     % be used to color symbols defined as
     % commands 
@@ -889,7 +893,7 @@
 
 \newenvironment{mycolorexample}
 {\begin{colbox} {yellow}
-        \color{black}    \begin{myexample}\normalfont}
+        \color{\papertextcolor}    \begin{myexample}\normalfont}
         {\end{myexample}
     \end{colbox}
 }
@@ -908,19 +912,20 @@
 {% \begin{colbox}{gray}
     \small\color{darkblue}    \textit{Proof:}\\}
 { % \end{colbox}  
+    \hfill $\blacksquare$
 }
 
 
 \newenvironment{mycolortheorem}
 { \begin{colbox}{lightred}
-        \color{black}    \begin{mytheorem}}
+        \color{\papertextcolor}    \begin{mytheorem}}
             {\end{mytheorem}
     \end{colbox}
 }
 
 \newenvironment{mycolorlemma}
 { \begin{colbox}{lightgray}
-        \color{black}    \begin{mylemma}}
+        \color{\papertextcolor}    \begin{mylemma}}
             {\end{mylemma}
     \end{colbox}
 }
@@ -929,7 +934,7 @@
 
 \newenvironment{mycolordefinition}
 { \begin{colbox}{lightgreen}
-        \color{black}    \begin{mydefinition}}
+        \color{\papertextcolor}    \begin{mydefinition}}
         {\end{mydefinition}
     \end{colbox}
 }
@@ -937,7 +942,7 @@
 
 \newenvironment{mycolorproposition}
 { \begin{colbox}{paleturquoise}
-        \color{black}    \begin{myproposition}}
+        \color{\papertextcolor}    \begin{myproposition}}
             {\end{myproposition}
     \end{colbox}
 }
@@ -945,7 +950,7 @@
 
 \newenvironment{mycolorquestion}
 { \begin{colbox}{lightblue}
-        \color{black}    \begin{myquestion}\normalfont}
+        \color{\papertextcolor}    \begin{myquestion}\normalfont}
             {\end{myquestion}
     \end{colbox}
 }
@@ -954,7 +959,7 @@
 
 \newenvironment{mycolorcorollary}
 { \begin{colbox}{lightgray}
-        \color{black}    \begin{mycorollary}}
+        \color{\papertextcolor}    \begin{mycorollary}}
             {\end{mycorollary}
     \end{colbox}
 }
@@ -964,7 +969,7 @@
 
 \newenvironment{mycolormnemonic}
 { \begin{colbox}{lightblue}
-        \color{black}    \textbf{Mnemonic:}}
+        \color{\papertextcolor}    \textbf{Mnemonic:}}
         {
     \end{colbox}
 }
@@ -973,7 +978,7 @@
 
 \newenvironment{mycolorremark}
 { \begin{colbox}{lightgray}
-        \color{black}    \begin{myremark}}
+        \color{\papertextcolor}    \begin{myremark}}
             {\end{myremark}
     \end{colbox}
 }
@@ -982,7 +987,7 @@
 
 \newenvironment{mycolorproblemstatement}
 { \begin{colbox}{purple}
-        \color{black}    \begin{myproblemstatement}}
+        \color{\papertextcolor}    \begin{myproblemstatement}}
             {\end{myproblemstatement}
     \end{colbox}
 }
@@ -991,7 +996,7 @@
 
 \newcommand{\mycolorbox}[2]{
     \begin{colbox}{purple}
-        \color{black}
+        \color{\papertextcolor}
         \textbf{#1}\\
         #2
     \end{colbox}
@@ -1025,7 +1030,7 @@
 
 \newenvironment{mycolorquiz}
 { \begin{colbox}{pistachio}
-        \color{black}    \begin{myquiz}\label{qx:\themyquiz}
+        \color{\papertextcolor}    \begin{myquiz}\label{qx:\themyquiz}
             \normalfont}
             {\end{myquiz}
     \end{colbox}
@@ -1082,7 +1087,7 @@
 %          {\end{myauxproblem} }
 \newenvironment{myproblem}
 {
-    \color{black}    \begin{myauxproblem}\normalfont}
+    \color{\papertextcolor}    \begin{myauxproblem}\normalfont}
         {\end{myauxproblem}
 }
 
@@ -1093,7 +1098,7 @@
 %          {\end{myauxproblem} }
 \newenvironment{myoptionalproblem}
 {
-    \color{black}    \begin{myauxoptionalproblem}\normalfont}
+    \color{\papertextcolor}    \begin{myauxoptionalproblem}\normalfont}
         {\end{myauxoptionalproblem}
 }
 
@@ -1138,22 +1143,56 @@
 
 
 % Colors
-\definecolor{orange}{rgb}{1,0.8,0}
-\definecolor{gray}{rgb}{.9,0.9,0.9}
-\definecolor{darkgray}{rgb}{.3,0.3,0.3}
-\definecolor{darkblue}{rgb}{.1,0.0,0.3}
-\definecolor{lightblue}{rgb}{0.7,0.7,1}
-\definecolor{lightred}{rgb}{1,0.7,.7}
-\definecolor{purple}{RGB}{204,153,255}
-\definecolor{lightgray}{rgb}{.95,0.95,0.95}
-\definecolor{lightgreen}{rgb}{0.6,0.8,0.6}
-\definecolor{darkgreen}{rgb}{0.05,0.3,0.05}
-\definecolor{pistachio}{RGB}{204,255,153}
-\definecolor{yellow}{RGB}{255,255,153}
-\definecolor{paleturquoise}{RGB}{175,238,238}
-\definecolor{bluegreen}{RGB}{88,159,159}
-\definecolor{darkyellow}{rgb}{.5,0.4,0}
-\definecolor{midgray}{rgb}{.5,0.5,0.9}
+\if\darktheme1
+    \definecolor{paperpage}{RGB}{0,0,0}
+    \definecolor{papertext}{RGB}{235,235,235}
+    \definecolor{orange}{RGB}{225,160,70}
+    \definecolor{gray}{RGB}{50,50,55}
+    \definecolor{darkgray}{RGB}{170,170,175}
+    \definecolor{darkblue}{RGB}{125,190,255}
+    \definecolor{highlightblue}{RGB}{80,230,255}
+    \definecolor{lightblue}{RGB}{35,50,85}
+    \definecolor{lightred}{RGB}{80,35,45}
+    \definecolor{purple}{RGB}{70,50,100}
+    \definecolor{lightgray}{RGB}{38,38,43}
+    \definecolor{lightgreen}{RGB}{30,65,45}
+    \definecolor{darkgreen}{RGB}{120,220,155}
+    \definecolor{pistachio}{RGB}{50,80,45}
+    \definecolor{yellow}{RGB}{75,65,25}
+    \definecolor{paleturquoise}{RGB}{25,70,75}
+    \definecolor{bluegreen}{RGB}{95,210,210}
+    \definecolor{darkyellow}{RGB}{230,200,95}
+    \definecolor{midgray}{RGB}{135,135,210}
+\else
+    \definecolor{paperpage}{rgb}{1,1,1}
+    \definecolor{papertext}{rgb}{0,0,0}
+    \definecolor{orange}{rgb}{1,0.8,0}
+    \definecolor{gray}{rgb}{.9,0.9,0.9}
+    \definecolor{darkgray}{rgb}{.3,0.3,0.3}
+    \definecolor{darkblue}{rgb}{.1,0.0,0.3}
+    \definecolor{highlightblue}{rgb}{0,0,1}
+    \definecolor{lightblue}{rgb}{0.7,0.7,1}
+    \definecolor{lightred}{rgb}{1,0.7,.7}
+    \definecolor{purple}{RGB}{204,153,255}
+    \definecolor{lightgray}{rgb}{.95,0.95,0.95}
+    \definecolor{lightgreen}{rgb}{0.6,0.8,0.6}
+    \definecolor{darkgreen}{rgb}{0.05,0.3,0.05}
+    \definecolor{pistachio}{RGB}{204,255,153}
+    \definecolor{yellow}{RGB}{255,255,153}
+    \definecolor{paleturquoise}{RGB}{175,238,238}
+    \definecolor{bluegreen}{RGB}{88,159,159}
+    \definecolor{darkyellow}{rgb}{.5,0.4,0}
+    \definecolor{midgray}{rgb}{.5,0.5,0.9}
+\fi
+\newcommand{\papertextcolor}{papertext}
+\makeatletter
+\newcommand{\STextApplyPageColors}{%
+    \pagecolor{paperpage}%
+    \color{papertext}%
+    \global\let\default@color\current@color%
+}
+\makeatother
+\AtBeginDocument{\STextApplyPageColors}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
